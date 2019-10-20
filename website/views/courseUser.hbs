@@ -1,0 +1,99 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/courseView.css">
+<link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
+
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+<script>
+    function Play(url, is_yt) {
+        if (is_yt) {
+            // create i frame
+            var player = document.getElementById("player");
+            removeChild(player);
+            player.innerHTML = createIframe(url);
+        }
+        else {
+            var vid = `<video id='my-video' class='video-js' controls preload='auto' data-setup='{}'>
+                <source src='${url}' type='video/mp4'>
+                <p class='vjs-no-js'>
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+                </p>
+            </video>`;
+            var player = document.getElementById("player");
+            removeChild(player);
+            player.innerHTML = vid;
+        }
+    }
+
+    function createIframe(url) {
+        var vid = `<iframe src="${url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+        return vid;
+    }
+
+    function removeChild(node) {
+        var child = node.lastElementChild;
+        while (child) {
+            node.removeChild(child);
+            child = node.lastElementChild;
+        }
+    }
+</script>
+
+<div class="wrapper">
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>{{coursename}}</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            {{#each lectures}}
+            <li>
+                <div class="a" onclick="Play(" {{this.url}}", {{this.is_yt}})">
+                    {{this.title}}
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+
+
+    </nav>
+
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Lectures</span>
+                </button>
+
+            </div>
+        </nav>
+
+        <div class="player" id="player">
+            <p>{{description}}</p>
+        </div>
+
+    </div>
+</div>
+
+<script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+<script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>

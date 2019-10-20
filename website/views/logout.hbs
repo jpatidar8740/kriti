@@ -1,0 +1,18 @@
+<script>
+    fetch('/logout/now')
+        .then(response => {
+            if (!response.ok) {
+                console.log("Error logging out");
+            }
+            else {
+                firebase.auth().signOut().then(function () {
+                    // Sign-out successful.
+                }).catch(function (error) {
+                    // An error happened.
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+</script>

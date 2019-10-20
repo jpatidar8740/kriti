@@ -22,4 +22,41 @@
 
 <script src="/javascripts/firebaseAuth.js"></script>
 
-<button onclick="signIn()">Login</button>
+<div id="sign-in">
+    <!--<div class="option">Continue as user</div>
+    <button type="button" class="signin_btn btn-light" onclick="signIn(true)">Sign in with Google</button>
+    <br><br>
+    <div class="option">Continue as Organization</div>
+    <button type="button" class="signin_btn btn-light" onclick="signIn(false)">Sign in with Google</button> -->
+
+
+
+    <div class="signin">
+        <div class="sign-in-info">As a user</div>
+        <div class='g-sign-in-button' onclick="signIn(true)">
+            <div class="content-wrapper">
+                <div class='logo-wrapper'>
+                    <img src='https://developers.google.com/identity/images/g-logo.png'>
+                </div>
+                <span class='text-container'>
+                    <span>Sign in with Google</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="signin" >
+        <div class="sign-in-info">As a organization</div>
+        <input required type="text" id="organization_name" placeholder="Organization Name" />
+        <div class='g-sign-in-button' onclick="signIn(false)">
+            <div class="content-wrapper">
+                <div class='logo-wrapper'>
+                    <img src='https://developers.google.com/identity/images/g-logo.png'>
+                </div>
+                <span class='text-container'>
+                    <span>Sign in with Google</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
